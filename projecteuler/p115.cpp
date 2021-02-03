@@ -7,19 +7,42 @@ typedef pair<long, long> pll;
 #define PI 3.14159265358979
 const int MOD = 1000000007;
 
-// unordered_map<pair<int, int>, unsigned long long> dp;
 
-long long recur(int m, int n, short int used, vector<vector<long long>> &dp) {
+// https://projecteuler.net/problem=115
+
+/* 
+    This is similar to problem 114, but with added constraints and different approach.
+
+    In p114, the red blocks has to be at least 3 units. In this problem, it has
+    to be at least 50 units instead of 3. Which means that we can tweak some
+    values in the function from p114.
+
+    Since the question asks for the first n to exceed 1 mil, we solve this in
+    a bottom-up manner (the dp table is built in that way by appending new values).
+
+*/
+
+ll recur(int n, bool used, vector<vector<ll>> &dp) {
+    // retrieve calculated values
     if (dp[n][used] != -1) return dp[n][used];
+
+    // base cases
     if (n < 0) return 0;
     if (n == 0) return 1;
-    long long sum = 0;
-    sum += recur(m, n - 1, 0, dp);
-    if (!used && n >= m) {
-        for (int i = m; i <= n; i++) {
-            sum += recur(m, n - i, 1, dp);
+
+    ll sum = 0;
+
+    // placing grey squares
+    sum += recur(n - 1, 0, dp);
+
+    // placing red blocks
+    if (!used && n >= 50) { // NOTE: here it is 50 instead of 3
+        for (int i = 50; i <= n; i++) {
+            sum += recur(n - i, 1, dp);
         }   
     }
+
+    // save calculated values
     dp[n][used] = sum;
     return sum;
 }
@@ -32,16 +55,18 @@ int main()
     
     // cout.setf(ios::fixed);
 
+    // initialize dp table for bottom-up
     vector<vector<long long>> dp(1, vector<long long> (2, -1));
-    dp[0][0] = 1;
-    dp[0][1] = 1;
+
     int n = 1;
-    long long result;
+    ll result;
     while (1) {
-        if (dp.size() == n) dp.push_back({-1, -1});
-        result = recur(50, n, 0, dp);
-        if (result >= (long long) 1e6) {
-            cout << n;
+        // increase the size of dp table
+        dp.push_back({-1, -1});
+
+        result = recur(n, 0, dp);
+        if (result >= (ll) 1e6) {
+            printf("%d\n", n);
             break;
         }
         n++;
