@@ -40,21 +40,32 @@ Then the answer to the question is X / N (the probability) rounded to 7 decimal 
 from itertools import combinations_with_replacement as comwr
 from math import factorial
 
+# number of Peter's win
 win = 0
+# total matches count
 matches = 0
+
+# Dice roll possibilites (combination) for Peter and Colin
 peter = tuple(comwr((x for x in range(1, 5)), 9))
 colin = tuple(comwr((x for x in range(1, 7)), 6))
-for x in peter:
-    for y in colin:
-        x_denom = 1
-        y_denom = 1
-        for dice in set(x):
-            x_denom *= factorial(x.count(dice))
-        for dice in set(y):
-            y_denom *= factorial(y.count(dice))
-        occurences = factorial(9) / x_denom * factorial(6) / y_denom
-        if sum(x) > sum(y):
+
+for peters_roll in peter:
+    for colins_roll in colin:
+        peters_roll_denom = 1   # to store the denominator for calculating 
+        colins_roll_denom = 1   # permutations with repetition
+
+        for dice in set(peters_roll):
+            peters_roll_denom *= factorial(peters_roll.count(dice))
+        for dice in set(colins_roll):
+            colins_roll_denom *= factorial(colins_roll.count(dice))
+        
+        # Count the number of such occurences using permutations with repetition
+        occurences = factorial(9) / peters_roll_denom * factorial(6) / colins_roll_denom
+
+        # Check if Peter wins
+        if sum(peters_roll) > sum(colins_roll):
             win += occurences
+            
         matches += occurences
 
 
