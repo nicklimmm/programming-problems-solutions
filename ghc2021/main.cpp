@@ -48,6 +48,9 @@ typedef unordered_map<ll, ll> umapll;
 typedef priority_queue<int> pq;
 typedef priority_queue<int, vi, greater<int>> pqmin;
 
+int ran(int i) {
+    return rand() % i;
+}
 
 int main()
 {
@@ -81,6 +84,10 @@ int main()
     for (int k = 0; k < i; k++) {
         cout << k << endl;
         cout << (int) itl[k].size() << endl;
+        random_shuffle(itl[k].begin(), itl[k].end());
+
+        random_shuffle(itl[k].begin(), itl[k].end());
+
         random_shuffle(itl[k].begin(), itl[k].end());
         // for (int j = 0; j < itl[k].size(); j += 2) {
         //     cout << itl[k][j] << ' ';
