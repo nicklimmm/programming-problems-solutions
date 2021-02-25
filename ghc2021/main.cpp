@@ -59,45 +59,31 @@ int main()
     int b, e, l;
     int p;
     string buf;
-    // scanf("%d %d %d %d %d", &d, &i, &s, &v, &f);
     cin >> d >> i >> s >> v >> f;
 
     vector<vector<string>> itl(i);
     vector<int> min_l(i, INT32_MAX);
 
     for (int _ = 0; _ < s; _++) {
-        // scanf("%d %d", &b, &e);
-        // cin >> buf;
-        // scanf("%d", &l);
-
-        // deb(b);
-        // deb(e);
-        // deb(buf);
-        // deb(l);
         cin >> b >> e >> buf >> l;
         itl[e].push_back(buf);
         min_l[e] = min(min_l[e], l);
     }
 
     for (int _ = 0; _ < v; _++) {
-        // scanf("%d", &p);
         cin >> p;
         for (int __ = 0; __ < p; __++) {
             cin >> buf;
         }
     }
 
-    // printf("%d\n", i);
     cout << i << endl;
     for (int k = 0; k < i; k++) {
-        // printf("%d\n", k);
-        // printf("%d\n", (int) itl[k].size());
         cout << k << endl;
         cout << (int) itl[k].size() << endl;
         for (auto s_name: itl[k]) {
             cout << s_name << ' ';
-            // printf("%d\n", min_l[k]);
-            cout << min_l[k] << endl;
+            cout << min_l[k] - floor(min_l[k] / exp(1)) << endl;
         }
     }
     

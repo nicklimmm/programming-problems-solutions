@@ -8,7 +8,7 @@ rue-d-amsterdam 1
 rue-d-athenes 1
 2
 1
-rue-de-moscou 3
+rue-de-moscou 2
 3
 1
 rue-de-rome 2
