@@ -81,9 +81,18 @@ int main()
     for (int k = 0; k < i; k++) {
         cout << k << endl;
         cout << (int) itl[k].size() << endl;
+        random_shuffle(itl[k].begin(), itl[k].end());
+        // for (int j = 0; j < itl[k].size(); j += 2) {
+        //     cout << itl[k][j] << ' ';
+        //     cout << 1 << endl;
+        // }
+        // for (int j = 1; j < itl[k].size(); j += 2) {
+
+        //     cout << itl[k][j] << ' ';
+        //     cout << 1 << endl;
+        // }
         for (auto s_name: itl[k]) {
             cout << s_name << ' ';
-            // cout << min_l[k] - floor(min_l[k] / exp(1)) << endl;
             cout << 1 << endl;
         }
     }
