@@ -83,7 +83,8 @@ int main()
         cout << (int) itl[k].size() << endl;
         for (auto s_name: itl[k]) {
             cout << s_name << ' ';
-            cout << min_l[k] - floor(min_l[k] / exp(1)) << endl;
+            // cout << min_l[k] - floor(min_l[k] / exp(1)) << endl;
+            cout << 5 << endl;
         }
     }
     
